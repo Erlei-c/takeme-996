@@ -1,145 +1,99 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TakeMe</title>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/8.6.1/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/8.6.1/firebase-auth.js"></script>
-    <script defer src="/__/firebase/8.6.1/firebase-database.js"></script>
-    <script defer src="/__/firebase/8.6.1/firebase-firestore.js"></script>
-    <script defer src="/__/firebase/8.6.1/firebase-functions.js"></script>
-    <script defer src="/__/firebase/8.6.1/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/8.6.1/firebase-storage.js"></script>
-    <script defer src="/__/firebase/8.6.1/firebase-analytics.js"></script>
-    <script defer src="/__/firebase/8.6.1/firebase-remote-config.js"></script>
-    <script defer src="/__/firebase/8.6.1/firebase-performance.js"></script>
-    <!-- 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TakeMe</title>
+
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/8.6.1/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/8.6.1/firebase-auth.js"></script>
+  <script defer src="/__/firebase/8.6.1/firebase-database.js"></script>
+  <script defer src="/__/firebase/8.6.1/firebase-firestore.js"></script>
+  <script defer src="/__/firebase/8.6.1/firebase-functions.js"></script>
+  <script defer src="/__/firebase/8.6.1/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/8.6.1/firebase-storage.js"></script>
+  <script defer src="/__/firebase/8.6.1/firebase-analytics.js"></script>
+  <script defer src="/__/firebase/8.6.1/firebase-remote-config.js"></script>
+  <script defer src="/__/firebase/8.6.1/firebase-performance.js"></script>
+  <!-- 
       initialize the SDK after all desired features are loaded, set useEmulator to false
       to avoid connecting the SDK to running emulators.
     -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  <script src="./js/login.js"></script>
 
-    
-  </head>
-  <body>
-    <div class="userBar">
-      <!-- 显示用户信息 -->
-      <div class="userInfo">
-        <span>用户名：
-          <span id="userDisPalyName">null</span>
-        </span>
-        <span>邮箱：
-          <span id="userEmail">null</span>
-        </span>
-        <span>uId：
-          <span id="userUId">null</span>
-        </span>
-      </div>
-      <!-- 登录功能 -->
-      <div>
-        <input type="text" id="email">
-        <input type="text" id="password">
-        <br><br>
-        <button id="inBtn">登录</button>&nbsp;
-        <button id="upBtn">注册</button>&nbsp;
-        <button id="outBtn">退出</button>&nbsp;
-        <button id="resetBtn">改密</button>&nbsp;
-      </div>
+
+</head>
+
+<body onUnload="signOut()">
+
+  <div class="userBar">
+    <!-- 显示用户信息 -->
+    <div class="userInfo">
+      <span>用户名：
+        <span id="userDisPalyName">null</span>
+      </span>
+      <span>邮箱：
+        <span id="userEmail">null</span>
+      </span>
+      <span>uId：
+        <span id="userUId">null</span>
+      </span>
+      <span>userPhoto
+        <span id="userPhoto"></span>
+      </span>
     </div>
-    
-    <script>
-      window.onload = function(){
-        start();
-      };
-      
-      function start(){
-          firebase.auth().onAuthStateChanged(function(user){
-            if(user){
-              var name = user.displayName;
-              var email = user.email;
-              var uid = user.uid;
-              document.getElementById('userDisPalyName').textContent=name;
-              document.getElementById('userEmail').textContent=email;
-              document.getElementById('userUId').textContent=uid;
-            }
-          });
 
-          document.getElementById('inBtn').addEventListener('click',signIn);
-          document.getElementById('upBtn').addEventListener('click',signUp);
-          document.getElementById('outBtn').addEventListener('click',signOut);
-          document.getElementById('resetBtn').addEventListener('click',ResetEmail);
-      }
-      // 登录
-      function signIn(){
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
-        firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(function(){
-          alert("登录成功");
-        }).catch(function (error){
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          if (errorCode === 'auth/wrong-password') {
-              alert("密码错误");
-          } else {
-              alert(errorMessage);
-          } 
-        });
-      }
-      // 注册
-      function signUp(){
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(function(){
-          alert("注册成功")
-        }).catch(function(error){
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          if (errorCode == 'auth/weak-password') {
-              alert('The password is too weak.');
-          } else {
-              alert(errorMessage);
-          }
-          });
-      }
-      // 密码重置
-      function ResetEmail(){
-        var email = document.getElementById('email').value;
-        firebase.auth().sendPasswordResetEmail(email)
-        .then(function(){
-          alert("邮件已发送")
-        }).catch(function(error){
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          if (errorCode == 'auth/invalid-email') {
-              alert(errorMessage);
-          } else if (errorCode == 'auth/user-not-found') {
-              alert(errorMessage);
-          }
-        });
-      }
-      // 确认邮箱
-      function viewEmail(){
-        var email = document.getElementById('email').value;
-        firebase.auth().sendEmailVerification(email)
-        .then(function () {
-        alert('Email Verification Sent!');
-        });
-      }
-      // 登出
-      function signOut(){
-        firebase.auth().signOut().then(function(){
-          alert("退出");
-        });
-      }
-    </script>
+    <div>
+      <input type="text" id="changeName">
+      <button id="changeNameBtn">改名</button>
+    </div>
 
-    
-    </script>
-  </body>
+  </div>
+
+
+  <a href="JavaScript:void(0)" onclick = "openDialog()">
+    <button>SignIn/SignUp</button>
+  </a>
+  <!-- 登录功能 -->
+  <div id="light" class="white_content">
+    <div class="formBX">
+      <p class="titleP2">SignIn/signUp</p>
+      <input type="text" id="email" placeholder="email">
+      <input type="text" id="password" placeholder="password">
+      <br><br>
+      <button id="inBtn">登录</button>&nbsp;
+      <button id="upBtn">注册</button>&nbsp;
+      <button id="outBtn">退出</button>&nbsp;
+      <p class="titleP3">忘记密码？</p>
+      <button id="resetBtn">改密</button>&nbsp;
+    </div>
+    <a class="guanbi" href = "javascript:void(0)" onclick="closeDialog()">关闭</a>
+  </div>
+  <div id="fade" class="black_overlay"></div>
+
+      <script>
+        function signOut() {
+          firebase.auth().signOut().then(function () {
+            alert("退出");
+            window.reload(true);
+          });
+        }
+        function openDialog() {
+          document.getElementById('light').style.display = 'block';
+          document.getElementById('fade').style.display = 'block'
+        }
+        function closeDialog() {
+          document.getElementById('light').style.display = 'none';
+          document.getElementById('fade').style.display = 'none'
+        }
+      </script>
+
+
+      </script>
+</body>
+
 </html>
