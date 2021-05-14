@@ -23,6 +23,7 @@
       to avoid connecting the SDK to running emulators.
     -->
   <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  <script src="./js/init.js"></script>
   <script src="./js/login.js"></script>
   <script src="./js/loopimg.js"></script>
   <link rel="stylesheet" href="./css/reset.css">
@@ -58,7 +59,7 @@
 
     <button onclick = "openDialog()">SignIn/SignUp</button>
     <div id="light" class="white_content">
-      <div class="formBX">
+      <div class="formBX ">
         <p class="titleP2">SignIn/signUp</p>
         <input type="text" id="email" placeholder="email">
         <input type="text" id="password" placeholder="password">
@@ -69,7 +70,8 @@
         <p class="titleP3">忘记密码？</p>
         <button id="resetBtn">改密</button>&nbsp;
       </div>
-      <a class="guanbi" href = "javascript:void(0)" onclick="closeDialog()">关闭</a>
+      <button onclick = "closeDialog()">guanbi</button>
+      <!-- <a class="guanbi" href = "javascript:void(0)" onclick="closeDialog()">关闭</a> -->
     </div>
     <div id="fade" class="black_overlay"></div>
   </div>
@@ -104,29 +106,9 @@
   </div>
 
   <div class="mapWrap">
-    
+
   </div>
 
-
-      <script>
-        function signOut() {
-          firebase.auth().signOut().then(function () {
-            alert("退出");
-            window.reload(true);
-          });
-        }
-        function openDialog() {
-          document.getElementById('light').style.display = 'block';
-          document.getElementById('fade').style.display = 'block'
-        }
-        function closeDialog() {
-          document.getElementById('light').style.display = 'none';
-          document.getElementById('fade').style.display = 'none'
-        }
-      </script>
-
-
-      </script>
 </body>
 
 </html>

@@ -11,14 +11,6 @@ var indicatorWrap;
 var loopItemWidth;
 var curIndex = 0;
 
-window.onload = function () {
-    initElement();
-    initEvent();
-    if (autoplay) {
-        startAnimation(loopImgWrap);
-    }
-}
-
 function initElement() {
     loopImg = document.getElementById("loopImg");
     loopImgLi = loopImg.getElementsByClassName("liList");

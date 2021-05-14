@@ -1,7 +1,3 @@
-window.onload = function () {
-    start();
-};
-
 function start() {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -97,4 +93,12 @@ function changeName(){
         alert("更新成功");
         window.reload();
     });
+}
+function openDialog() {
+    document.getElementById('light').style.display = 'block';
+    document.getElementById('fade').style.display = 'block'
+}
+function closeDialog() {
+    document.getElementById('light').style.display = 'none';
+    document.getElementById('fade').style.display = 'none'
 }
