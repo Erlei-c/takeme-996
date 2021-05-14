@@ -8,11 +8,9 @@ function start() {
             var name = user.displayName;
             var email = user.email;
             var uid = user.uid;
-            var photoUrl = user.photoURL;
             document.getElementById('userDisPalyName').textContent = name;
             document.getElementById('userEmail').textContent = email;
             document.getElementById('userUId').textContent = uid;
-            document.getElementById('userPhoto').textContent = photoUrl;
         }
     });
 
@@ -94,8 +92,7 @@ function changeName(){
     var user = firebase.auth().currentUser;
 
     user.updateProfile({
-    displayName: document.getElementById('changeName').value,
-    photoURL:"./tou.jpg"
+    displayName: document.getElementById('changeName').value
     }).then(function() {
         alert("更新成功");
         window.reload();

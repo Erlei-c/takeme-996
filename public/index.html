@@ -24,56 +24,89 @@
     -->
   <script defer src="/__/firebase/init.js?useEmulator=true"></script>
   <script src="./js/login.js"></script>
+  <script src="./js/loopimg.js"></script>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/index.css">
 
 
 </head>
 
 <body onUnload="signOut()">
 
-  <div class="userBar">
-    <!-- 显示用户信息 -->
-    <div class="userInfo">
-      <span>用户名：
-        <span id="userDisPalyName">null</span>
-      </span>
-      <span>邮箱：
-        <span id="userEmail">null</span>
-      </span>
-      <span>uId：
-        <span id="userUId">null</span>
-      </span>
-      <span>userPhoto
-        <span id="userPhoto"></span>
-      </span>
-    </div>
+  <div class="userBarWrap">
 
-    <div>
-      <input type="text" id="changeName">
-      <button id="changeNameBtn">改名</button>
+      <div class="userBar">
+    
+        <div class="userInfo">
+          <span>用户名：
+            <span id="userDisPalyName">null</span>
+          </span>
+          <span>邮箱：
+            <span id="userEmail">null</span>
+          </span>
+          <span>uId：
+            <span id="userUId">null</span>
+          </span>
+        </div>
+
+        <div>
+          <input type="text" id="changeName">
+          <button id="changeNameBtn">改名</button>
+        </div>
+      </div>
+
+
+    <button onclick = "openDialog()">SignIn/SignUp</button>
+    <div id="light" class="white_content">
+      <div class="formBX">
+        <p class="titleP2">SignIn/signUp</p>
+        <input type="text" id="email" placeholder="email">
+        <input type="text" id="password" placeholder="password">
+        <br><br>
+        <button id="inBtn">登录</button>&nbsp;
+        <button id="upBtn">注册</button>&nbsp;
+        <button id="outBtn">退出</button>&nbsp;
+        <p class="titleP3">忘记密码？</p>
+        <button id="resetBtn">改密</button>&nbsp;
+      </div>
+      <a class="guanbi" href = "javascript:void(0)" onclick="closeDialog()">关闭</a>
     </div>
+    <div id="fade" class="black_overlay"></div>
+  </div>
+
+  <div class="createPostWrap">
+
+  </div>
+  
+  <div class="postView">
 
   </div>
 
-
-  <a href="JavaScript:void(0)" onclick = "openDialog()">
-    <button>SignIn/SignUp</button>
-  </a>
-  <!-- 登录功能 -->
-  <div id="light" class="white_content">
-    <div class="formBX">
-      <p class="titleP2">SignIn/signUp</p>
-      <input type="text" id="email" placeholder="email">
-      <input type="text" id="password" placeholder="password">
-      <br><br>
-      <button id="inBtn">登录</button>&nbsp;
-      <button id="upBtn">注册</button>&nbsp;
-      <button id="outBtn">退出</button>&nbsp;
-      <p class="titleP3">忘记密码？</p>
-      <button id="resetBtn">改密</button>&nbsp;
-    </div>
-    <a class="guanbi" href = "javascript:void(0)" onclick="closeDialog()">关闭</a>
+  <div id="loopImg">
+    <ul class="loopImgWrap">
+          <li class="liList"><a href="./tip.html"><img src="./img/loopImg1.jpg" /></a></li>
+          <li class="liList"><a href="./tip.html"><img src="./img/loopImg2.jpg" /></a></li>
+          <li class="liList"><a href="./tip.html"><img src="./img/loopImg3.jpg" /></a></li>
+          <li class="liList"><a href="./tip.html"><img src="./img/loopImg4.jpg" /></a></li>
+          <li class="liList"><a href="./tip.html"><img src="./img/loopImg5.jpg" /></a></li>
+      </ul>
+      <div class="arrowWrap">
+          <span class="leftArrow">←</span>
+          <span class="rightArrow">→</span>
+      </div>
+      <div class="indicatorWrap">
+          <span class="indicator active"></span>
+          <span class="indicator"></span>
+          <span class="indicator"></span>
+          <span class="indicator"></span>
+          <span class="indicator"></span>
+      </div>
   </div>
-  <div id="fade" class="black_overlay"></div>
+
+  <div class="mapWrap">
+    
+  </div>
+
 
       <script>
         function signOut() {

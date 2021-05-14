@@ -1,0 +1,128 @@
+body{
+    height: 90000px;
+}
+/* 设置顶部用户功能区 */
+.userBarWrap{
+    background-color: aquamarine;
+    width: 900px;
+    height: 90px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+/* 设置发帖区 */
+.createPostWrap{
+    width: 900px;
+    height: 200px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    background-color: forestgreen;
+}
+/* 设置浏览区 */
+.postView{
+    width: 900px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: aqua;
+}
+/* 设置轮播图区 */
+#loopImg, ul{
+    width: 331px;
+    height: 331px;
+}
+.loopImgWrap a{
+    width: 331px;
+    height: 331px;
+}
+#loopImg {
+    position: fixed;
+    overflow: hidden;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+.loopImgWrap {
+    position: absolute;
+    list-style-type: none;
+    width: 6000px;
+}
+
+.loopImgWrap li {
+    float: left;
+}
+
+.loopImgWrap a {
+    display: inline-block;
+}
+
+.loopImgWrap img {
+    width: 100%;
+    height: 100%;
+}
+
+#loopImg:hover .arrowWrap{
+    display: block;
+}
+.arrowWrap {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    top: 50%;
+    margin-top: -25px;
+    display: none;
+}
+
+.arrowWrap span {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    /*display: inline-block;*/
+    text-align: center;
+    line-height: 50px;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.leftArrow {
+    left: 0px;
+    cursor: pointer;
+}
+
+.rightArrow {
+    right: 0px;
+    cursor: pointer;
+}
+
+.indicatorWrap {
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    bottom: 0;
+    left: 50%;
+    margin-left: -75px;
+    text-align: center;
+}
+
+.indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+}
+.indicator.active {
+    background: red;
+}
+/* 设置地图区 */
+.mapWrap{
+    width: 331px;
+    height: 331px;
+    background-color: blueviolet;
+    position: fixed;
+    overflow: hidden;
+    right: 0;
+}
