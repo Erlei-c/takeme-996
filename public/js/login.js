@@ -23,12 +23,20 @@ function signIn() {
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then(function () {
             alert("登录成功");
-            window.reload();
+            location.reload();
         }).catch(function (error) {
             var errorCode = error.code;
             var errorMessage = error.message;
             if (errorCode === 'auth/wrong-password') {
                 alert("密码错误");
+            } if (errorCode === 'auth/user-not-found') {
+                alert("未找到此账号");
+            } 
+            if (errorCode === 'auth/user-disabled') {
+                alert("账号被禁用");
+            } 
+            if (errorCode === 'auth/invalid-email') {
+                alert("邮箱无效");
             } else {
                 alert(errorMessage);
             }
@@ -41,13 +49,17 @@ function signUp() {
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(function () {
             alert("注册成功");
-            window.reload();
+            location.reload();
         }).catch(function (error) {
             var errorCode = error.code;
             var errorMessage = error.message;
             if (errorCode == 'auth/weak-password') {
-                alert('The password is too weak.');
-            } else {
+                alert('密码过于简单');
+            } if (errorCode == 'auth/email-already-in-use') {
+                alert('当前账号已存在');
+            }if (errorCode == 'auth/invalid-email') {
+                alert('邮件无效');
+            }else {
                 alert(errorMessage);
             }
         });
@@ -80,7 +92,7 @@ function viewEmail() {
 function signOut() {
     firebase.auth().signOut().then(function () {
         alert("退出");
-        window.reload();
+        location.reload();
     });
 }
 // 改名
@@ -91,7 +103,7 @@ function changeName(){
     displayName: document.getElementById('changeName').value
     }).then(function() {
         alert("更新成功");
-        window.reload();
+        location.reload();
     });
 }
 function openDialog() {
