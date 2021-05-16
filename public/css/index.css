@@ -4,10 +4,16 @@ body{
 /* 设置发帖区 */
 .createPostWrap{
     width: 900px;
-    height: 600px;
+    height: 350px;
     margin: 0 auto;
     margin-bottom: 30px;
     background-color: forestgreen;
+}
+#postmessage{
+    outline-style: none;
+    border: 1px solid #ccc;
+    padding: 6px;
+    
 }
 
 /* 设置浏览区 */
