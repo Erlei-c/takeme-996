@@ -30,6 +30,8 @@
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/index.css">
   <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="./css/userbar.css">
+  <link rel="stylesheet" href="./css/loopimg.css">
 
 
 </head>
@@ -41,30 +43,42 @@
       <div class="userBar">
     
         <div class="userInfo">
-          <span>用户名：
-            <span id="userDisPalyName">null</span>
-          </span>
-          <span>邮箱：
-            <span id="userEmail">null</span>
-          </span>
-          <span>uId：
-            <span id="userUId">null</span>
-          </span>
+
+          <div class="userPhoto">
+            <img src="./img/tou.jpg" alt="">
+          </div>
+
+          <div class="userName">
+            <span>userName:</span>
+            <span id="userDisPalyName">请登录</span>
+            <hr>
+            <span>email:</span>
+            <span id="userEmail">请登录</span>
+            
+          </div>
+          
         </div>
 
-        <div>
-          <input type="text" id="changeName">
-          <button id="changeNameBtn">改名</button>
+        <div class="dropDown" id="lightDropDown">
+          <a class="closeChange" href="javascript:;" onclick="closeChange()">关闭</a>
+          <input type="text" id="changeName" placeholder="请输入要修改的用户名">
+          <button id="changeNameBtn">修改</button>
+          <br><br>
+          <input type="text" placeholder="请选择头像">
+          <button>上传</button>
         </div>
+        <div id="fadeDropDown" class="black_overlay"></div>
       </div>
 
-
-    <button onclick = "openDialog()">SignIn/SignUp</button>
+      <button class="openChange" onclick = "openChange()">↓</button>
+      <button class="signout" onclick="signOut()">退出</button>
+      <button onclick = "openDialog()" class="signBtn">SignIn/SignUp</button>
     <div id="light" class="white_content">
       <div class="formBX ">
+        <a class="closeDialog" href = "javascript:;" onclick="closeDialog()">关闭</a>
         <p class="titleP2">SignIn/signUp</p>
         <input type="text" id="email" placeholder="email">
-        <input type="text" id="password" placeholder="password">
+        <input type="password" id="password" placeholder="password">
         <br><br>
         <button id="inBtn">登录</button>&nbsp;
         <button id="upBtn">注册</button>&nbsp;
@@ -72,8 +86,7 @@
         <p class="titleP3">忘记密码？</p>
         <button id="resetBtn">改密</button>&nbsp;
       </div>
-      <button onclick = "closeDialog()">guanbi</button>
-      <!-- <a class="guanbi" href = "javascript:void(0)" onclick="closeDialog()">关闭</a> -->
+      
     </div>
     <div id="fade" class="black_overlay"></div>
   </div>
@@ -82,7 +95,7 @@
     <div>
       <input  type="text" id="postmessage" placeholder="post a message">
     </div>
-    
+
     <div id="editor"></div>
 
       <button id="btn1">获取html</button>
@@ -153,6 +166,7 @@
   <div class="mapWrap">
 
   </div>
+
 
 </body>
 <script>
