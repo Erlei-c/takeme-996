@@ -1,10 +1,10 @@
 window.onload = function () {
-    start();
     initElement();
     initEvent();
     if (autoplay) {
         startAnimation(loopImgWrap);
-    };
+    }
+    start();
 }
 function signOut() {
     firebase.auth().signOut().then(function () {
