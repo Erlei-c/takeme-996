@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TakeMe</title>
-
+  <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
   <!-- update the version number as needed -->
   <script defer src="/__/firebase/8.6.1/firebase-app.js"></script>
   <!-- include only the Firebase features as you need -->
@@ -26,6 +26,7 @@
   <script src="./js/init.js"></script>
   <script src="./js/login.js"></script>
   <script src="./js/loopimg.js"></script>
+  <!-- <script src="./js/fatie.js"></script> -->
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/index.css">
   <link rel="stylesheet" href="./css/login.css">
@@ -78,36 +79,43 @@
   </div>
 
   <div class="createPostWrap">
-    <div id="editor">
-        
+    <div>
+      <input  type="text" id="postmessage" placeholder="post a message">
     </div>
-    <button id="btn1">获取html</button>
-    <button id="btn2">获取text</button>
-    <script type="text/javascript" src="./js/wangEditor.min.js"></script>
-    <script type="text/javascript">
-        
-        var E = window.wangEditor
-        var editor = new E('#editor')
-        // const editor = new E('#editor') // 取消自动聚焦 focuseditor.config.focus = false editor.create()
-        editor.config.height = 200
-        editor.config.zIndex = 500
-        // 或者 var editor = new E( document.getElementById('editor') )
-        editor.create()
-         //禁用
-        editor.disable();
-        
-        // 启用
-        editor.enable();
-        document.getElementById('btn1').addEventListener('click', function () {
-        // 读取 html
-        alert(editor.txt.html())
-        }, false)
+    
+    <div id="editor"></div>
 
-        document.getElementById('btn2').addEventListener('click', function () {
-        // 读取 text
-        alert(editor.txt.text())
-        }, false)
-    </script>
+      <button id="btn1">获取html</button>
+      <button id="btn2">获取text</button>
+      <script type="text/javascript" src="./js/wangEditor.min.js"></script>
+      <script type="text/javascript">
+          
+          var E = window.wangEditor
+          var editor = new E('#editor')
+          const editor = new E('#editor') // 取消自动聚焦 focuseditor.config.focus = false editor.create()
+          editor.config.height = 200
+          editor.config.zIndex = 500
+          // 或者 var editor = new E( document.getElementById('editor') )
+          editor.create();
+          //禁用
+          editor.disable();
+          
+          // 启用
+          editor.enable();
+          document.getElementById('btn1').addEventListener('click', function () {
+          // 读取 html
+          alert(editor.txt.html())
+          }, false)
+
+          document.getElementById('btn2').addEventListener('click', function () {
+          // 读取 text
+          alert(editor.txt.text())
+          }, false)
+          
+          
+          
+      </script>
+    
   </div>
   
   <div class="postView">
@@ -140,5 +148,28 @@
   </div>
 
 </body>
+<script>
+  $(function(){
+      $("input#postmessage").focus(function(){
+      
+          var E = window.wangEditor
+          var editor = new E('#editor')
+          // const editor = new E('#editor') // 取消自动聚焦 focuseditor.config.focus = false editor.create()
+          editor.config.height = 200
+          editor.config.zIndex = 500
+          // 或者 var editor = new E( document.getElementById('editor') )
+          editor.create();
+      });
 
+      // $("input").blur(function(){
+      //     var E = window.wangEditor
+      //     var editor = new E('#editor')
+      //     //const editor = new E('#editor') // 取消自动聚焦 focuseditor.config.focus = false editor.create()
+      //     editor.config.height = 200
+      //     editor.config.zIndex = 500
+      //     // 或者 var editor = new E( document.getElementById('editor') )
+      //     editor.create();
+      // });
+  })
+</script>
 </html>
