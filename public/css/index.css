@@ -5,18 +5,21 @@ body{
 .userBarWrap{
     background-color: aquamarine;
     width: 900px;
-    height: 90px;
+    height: 80px;
     margin: 0 auto;
     margin-bottom: 20px;
 }
 /* 设置发帖区 */
 .createPostWrap{
     width: 900px;
-    height: 200px;
+    height: 600px;
     margin: 0 auto;
     margin-bottom: 30px;
     background-color: forestgreen;
+    z-index: 1222;
 }
+
+
 /* 设置浏览区 */
 .postView{
     width: 900px;
