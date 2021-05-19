@@ -16,23 +16,25 @@ function initElement() {
     loopImgLi = loopImg.getElementsByClassName("liList");
     loopImgWrap = loopImg.getElementsByClassName("loopImgWrap")[0];
     indicatorWrap = loopImg.getElementsByClassName("indicatorWrap")[0];
-
+    // 将第一个图片复制到最后
     var firstItem = loopImgLi[0].cloneNode(true);
     loopImgWrap.appendChild(firstItem);
-
+    // 设置宽度
     loopItemWidth = loopImgLi[0].offsetWidth;
 }
 
 function initEvent() {
+    // 鼠标移入时自动播放停止
     loopImg.addEventListener("mouseover", function () {
         clearTimeout(autoplayId);
         autoplay = false;
     });
+    // 鼠标移出时自动播放开始
     loopImg.addEventListener("mouseout", function () {
         autoplay = true;
         startAnimation(loopImgWrap);
     });
-
+    // 设置指针 的移动
     var indicators = indicatorWrap.children;
     for (var i = 0; i < indicators.length; i++) {
         indicators[i].setAttribute("index", i);
@@ -41,7 +43,7 @@ function initEvent() {
             next(index);
         });
     }
-
+    // 获取元素 设置监听事件
     var leftArrow = loopImg.getElementsByClassName("leftArrow")[0];
     var rightArrow = loopImg.getElementsByClassName("rightArrow")[0];
     leftArrow.addEventListener("click", function () {
@@ -53,13 +55,16 @@ function initEvent() {
 }
 
 function animate(element, target) {
-    var step = 5;
-    var time = 5;
+    var step = 5; //设置移动距离
+    var time = 5; //设置时间 
+    //设置距离
     var gap = (Math.abs(target - element.offsetLeft) / loopItemWidth);
     if (gap > 1) {
+        // 距离越大 移动的距离越大，移动的时间变小
         step = step * gap;
         time = time / gap;
     }
+    // 要移动的元素 以及移动的目标值
     if (element) {
         step = (element.offsetLeft > target) ? -step : step;
         clearInterval(intervalId);
@@ -84,6 +89,9 @@ function animate(element, target) {
 }
 
 function prev() {
+    // 向前移动 当前位置-1 如果当前位置小于0 元素的左值等于 元素的个数减1乘图片宽度
+    // 当前位置等于元素的个数-2
+    // 传入到动画函数中 元素 以及当前位置乘图片宽度
     var element = loopImgWrap;
     var li = element.children;
     curIndex = curIndex - 1;
@@ -95,6 +103,8 @@ function prev() {
 }
 
 function next(nextIndex) {
+    // 如果下一个位置不等于空 下一个位置的属性不是无法找到 当前位置等于下一个位置
+    // 否则 当前位置自增一
     var element = loopImgWrap;
     var li = element.children;
     if ((nextIndex != null) && (typeof (nextIndex) != "undefined")) {
