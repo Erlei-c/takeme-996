@@ -5,6 +5,7 @@ window.onload = function () {
         startAnimation(loopImgWrap);
     }
     start();
+    shangchuan();
 }
 function signOut() {
     firebase.auth().signOut().then(function () {

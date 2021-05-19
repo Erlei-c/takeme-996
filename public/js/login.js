@@ -4,9 +4,12 @@ function start() {
             var name = user.displayName;
             var email = user.email;
             var uid = user.uid;
+            var userPhoto = user.photoURL;
             document.getElementById('userDisPalyName').textContent = name;
             document.getElementById('userEmail').textContent = email;
             document.getElementById('userUId').textContent = uid;
+            // document.getElementById('userPhotos').src = userPhoto;
+            document.getElementById('userPhoto').innerHTML = '<img src="' + userPhoto + '" alt="">';
         }
     });
 
@@ -15,6 +18,9 @@ function start() {
     document.getElementById('outBtn').addEventListener('click', signOut);
     document.getElementById('resetBtn').addEventListener('click', ResetEmail);
     document.getElementById('changeNameBtn').addEventListener('click', changeName);
+    document.getElementById('changePhoto').addEventListener('click', changePhoto);
+    // document.getElementById('file').addEventListener('change', changePhoto);
+    
 }
 // 登录
 function signIn() {
@@ -104,6 +110,35 @@ function changeName(){
     }).then(function() {
         alert("更新成功");
         location.reload();
+    });
+}
+function changePhoto(evt){
+    var user = firebase.auth().currentUser;
+    var id = user.uid;
+    var storageRef = firebase.storage().ref();
+    evt.stopPropagation();
+    evt.preventDefault();
+    var file = evt.target.files[0];
+
+    var metadata = {
+        'contentType': file.type
+    };
+
+    storageRef.child('userPhoto/' + id/ + file.name).put(file, metadata).then(function (snapshot) {
+        // Let's get a download URL for the file.
+        snapshot.ref.getDownloadURL().then(function (url) {
+            console.log('File available at', url);
+            // document.getElementById('linkbox').innerHTML = '<a href="' + url + '">Click For File</a>';
+            // document.getElementById('userPhoto').innerHTML = '<img src="' + url + '" alt="">';
+            user.updateProfile({
+                photoURL: url
+            }).then(function() {
+                alert("更新成功");
+                location.reload();
+            });
+        });
+    }).catch(function (error) {
+        console.error('Upload failed:', error);
     });
 }
 function openDialog() {
