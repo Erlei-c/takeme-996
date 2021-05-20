@@ -22,8 +22,8 @@
       initialize the SDK after all desired features are loaded, set useEmulator to false
       to avoid connecting the SDK to running emulators.
     -->
-  <script defer src="/__/firebase/init.js"></script>
-  <!-- <script defer src="/__/firebase/init.js?useEmulator=true"></script> -->
+  <!-- <script defer src="/__/firebase/init.js"></script> -->
+  <script defer src="/__/firebase/init.js?useEmulator=true"></script>
   <script src="./js/init.js"></script>
   <script src="./js/login.js"></script>
   <script src="./js/loopimg.js"></script>
@@ -49,7 +49,8 @@
 
         <div class="userPhoto">
           <!-- <img src="./img/tou.jpg" alt="" id="userPhotos"> -->
-          <img src="" alt="" id="userPhotos">
+          <!-- <img src="" alt="" id="userPhotos"> -->
+          <p id="userPhotos"></p>
 
         </div>
 
@@ -139,8 +140,11 @@
   </div>
 
   <div class="postView">
-    
-
+    <input type="text" id="title">
+    <input type="text" id="content">
+    <button id="postSend">发送</button>
+    <p>photoUrl:</p>
+    <span id="uppp"></span>
   </div>
 
   <div id="loopImg">

@@ -3,19 +3,29 @@ function start() {
         if (user) {
             var name = user.displayName;
             var email = user.email;
-            var uid = user.uid;
+            // var uid = user.uid;
             var photoUrl = user.photoURL;
+            // var imgs = document.getElementById('userPhotos');
             var storageRef = firebase.storage().ref();
-            var url = storageRef.child('userPhoto/' + user.uid + '/' + '0').getDownloadURL().url;
-            // var url = firebase.storage().ref().child('userPhoto/' + user.uid + '/' + '0').getDownloadURL();
+
             document.getElementById('userDisPalyName').textContent = name;
             document.getElementById('userEmail').textContent = email;
-            document.getElementById('userUId').textContent = uid;
-            document.getElementById('userPhotos').src = url;
-            document.getElementById('userPhotos').src = photoUrl;
+            // document.getElementById('userUId').textContent = uid;
+            console.log(photoUrl);
+            // console.log(imgs.src);
             
+            storageRef.child('userPhoto/' + user.uid + '/' + '0').getDownloadURL().then(function (url) {
+                    console.log(url);
+                    document.getElementById('userPhotos').innerHTML = '<img src="' + url + '" alt="" id="userPhotos">';
+                    // document.getElementById('userPhotos').src =  url;
+                });
             
-
+            // imgs.src = '"'  ;
+            
+            // document.getElementById('userPhotos').src = photoUrl;
+            
+            // document.getElementById('userPhoto').innerHTML = '<img src="'+ photoUrl +'" alt=""></img>';
+            document.getElementById('uppp').textContent = photoUrl;
             // document.getElementById('userPhotos').src = gai();
             // document.getElementById('userPhoto').innerHTML = '<img src="' + userPhoto + '" alt="">';
         }
@@ -26,7 +36,7 @@ function start() {
     document.getElementById('outBtn').addEventListener('click', signOut);
     document.getElementById('resetBtn').addEventListener('click', ResetEmail);
     document.getElementById('changeNameBtn').addEventListener('click', changeName);
-    document.getElementById('changePhoto').addEventListener('click', changePhoto);
+    // document.getElementById('changePhoto').addEventListener('click', changePhoto);
     document.getElementById('file').addEventListener('change', handleFileSelect);
 
 }
@@ -37,8 +47,7 @@ function signIn() {
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then(function () {
             alert("登录成功");
-            location.reload();
-            loadPhoto();
+            // location.reload();
         }).catch(function (error) {
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -141,7 +150,7 @@ function handleFileSelect(evt) {
             // document.getElementById('userPhotos').src =  url;
             user.updateProfile({
                 
-                photoURL: url
+                photoURL: '"' + url + '"'
                 });
         });
     }).catch(function (error) {
