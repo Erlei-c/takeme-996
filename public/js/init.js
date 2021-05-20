@@ -4,6 +4,7 @@ window.onload = function () {
     if (autoplay) {
         startAnimation(loopImgWrap);
     }
+    init();
     start();
     
 
