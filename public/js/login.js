@@ -4,12 +4,20 @@ function start() {
             var name = user.displayName;
             var email = user.email;
             var uid = user.uid;
-            var userPhoto = user.photoURL;
+            var photoUrl = user.photoURL;
+            var storageRef = firebase.storage().ref();
+            var url = storageRef.child('userPhoto/' + user.uid + '/' + '0').getDownloadURL().url;
+            // var url = firebase.storage().ref().child('userPhoto/' + user.uid + '/' + '0').getDownloadURL();
             document.getElementById('userDisPalyName').textContent = name;
             document.getElementById('userEmail').textContent = email;
             document.getElementById('userUId').textContent = uid;
-            // document.getElementById('userPhotos').src = userPhoto;
-            document.getElementById('userPhoto').innerHTML = '<img src="' + userPhoto + '" alt="">';
+            document.getElementById('userPhotos').src = url;
+            document.getElementById('userPhotos').src = photoUrl;
+            
+            
+
+            // document.getElementById('userPhotos').src = gai();
+            // document.getElementById('userPhoto').innerHTML = '<img src="' + userPhoto + '" alt="">';
         }
     });
 
@@ -19,8 +27,8 @@ function start() {
     document.getElementById('resetBtn').addEventListener('click', ResetEmail);
     document.getElementById('changeNameBtn').addEventListener('click', changeName);
     document.getElementById('changePhoto').addEventListener('click', changePhoto);
-    // document.getElementById('file').addEventListener('change', changePhoto);
-    
+    document.getElementById('file').addEventListener('change', handleFileSelect);
+
 }
 // 登录
 function signIn() {
@@ -30,6 +38,7 @@ function signIn() {
         .then(function () {
             alert("登录成功");
             location.reload();
+            loadPhoto();
         }).catch(function (error) {
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -37,10 +46,10 @@ function signIn() {
                 alert("密码错误");
             } if (errorCode === 'auth/user-not-found') {
                 alert("未找到此账号");
-            } 
+            }
             if (errorCode === 'auth/user-disabled') {
                 alert("账号被禁用");
-            } 
+            }
             if (errorCode === 'auth/invalid-email') {
                 alert("邮箱无效");
             } else {
@@ -63,9 +72,9 @@ function signUp() {
                 alert('密码过于简单');
             } if (errorCode == 'auth/email-already-in-use') {
                 alert('当前账号已存在');
-            }if (errorCode == 'auth/invalid-email') {
+            } if (errorCode == 'auth/invalid-email') {
                 alert('邮件无效');
-            }else {
+            } else {
                 alert(errorMessage);
             }
         });
@@ -102,43 +111,49 @@ function signOut() {
     });
 }
 // 改名
-function changeName(){
+function changeName() {
     var user = firebase.auth().currentUser;
 
     user.updateProfile({
-    displayName: document.getElementById('changeName').value
-    }).then(function() {
+        displayName: document.getElementById('changeName').value
+    }).then(function () {
         alert("更新成功");
         location.reload();
     });
 }
-function changePhoto(evt){
-    var user = firebase.auth().currentUser;
-    var id = user.uid;
-    var storageRef = firebase.storage().ref();
+function handleFileSelect(evt) {
     evt.stopPropagation();
     evt.preventDefault();
     var file = evt.target.files[0];
-
+    var storageRef = firebase.storage().ref();
     var metadata = {
         'contentType': file.type
     };
+    var user = firebase.auth().currentUser;
+    // var id = user.uid;
 
-    storageRef.child('userPhoto/' + id/ + file.name).put(file, metadata).then(function (snapshot) {
+    // Push to child path.
+    storageRef.child('userPhoto/' + user.uid + '/' + '0').put(file, metadata).then(function (snapshot) {
         // Let's get a download URL for the file.
         snapshot.ref.getDownloadURL().then(function (url) {
-            console.log('File available at', url);
-            // document.getElementById('linkbox').innerHTML = '<a href="' + url + '">Click For File</a>';
-            // document.getElementById('userPhoto').innerHTML = '<img src="' + url + '" alt="">';
+            document.getElementById('linkbox').innerHTML = '<a href="' + url + '">Click For File</a>';
+            // document.getElementById('userPhoto').innerHTML = '<img src="' + userPhoto + '" alt="">';
+            // document.getElementById('userPhotos').src =  url;
             user.updateProfile({
+                
                 photoURL: url
-            }).then(function() {
-                alert("更新成功");
-                location.reload();
-            });
+                });
         });
     }).catch(function (error) {
         console.error('Upload failed:', error);
+    });
+}
+function loadPhoto() {
+    var user = firebase.auth().currentUser;
+    var storageRef = firebase.storage().ref();
+    storageRef.child('userPhoto/' + user.uid + '/' + '0').getDownloadURL().then(function (url) {
+        console.log('File available at', url);
+        document.getElementById('userPhotos').src = url;
     });
 }
 function openDialog() {
@@ -149,11 +164,11 @@ function closeDialog() {
     document.getElementById('light').style.display = 'none';
     document.getElementById('fade').style.display = 'none';
 }
-function openChange(){
+function openChange() {
     document.getElementById('lightDropDown').style.display = 'block';
     document.getElementById('fadeDropDown').style.display = 'block';
 }
-function closeChange(){
+function closeChange() {
     document.getElementById('lightDropDown').style.display = 'none';
     document.getElementById('fadeDropDown').style.display = 'none';
 }
