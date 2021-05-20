@@ -5,7 +5,7 @@ window.onload = function () {
         startAnimation(loopImgWrap);
     }
     start();
-
+    
 
 }
 function signOut() {
