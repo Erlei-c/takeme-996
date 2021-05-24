@@ -28,7 +28,6 @@ body{
 .mapWrap{
     width: 331px;
     height: 331px;
-    background-color: blueviolet;
     position: fixed;
     overflow: hidden;
     right: 0;
