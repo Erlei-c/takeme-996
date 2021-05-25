@@ -25,71 +25,61 @@
 //         });
 //     });
 // }
-const firebaseConfig = {
-    apiKey: "AIzaSyAyerfevCSlJJVgBMfVtf3hN1hA6BqAPDk",
-    authDomain: "take-me-996.firebaseapp.com",
-    databaseURL: "https://take-me-996-default-rtdb.firebaseio.com",
-    projectId: "take-me-996",
-    storageBucket: "take-me-996.appspot.com",
-    messagingSenderId: "271316744439",
-    appId: "1:271316744439:web:a47c8504fd2802ee3ebbf2",
-    measurementId: "G-DFMGEV6Z83"
-};
-var dataIndex = 1
-///////////////////////////////////////////////////////////////////////
-let db = firebase.firestore();
-db.collection("todos").orderBy("content", "asc")
-    .onSnapshot(function (querySnapshot) {
-        ulist = document.getElementById('ulist')
-        while (ulist.firstChild) {
-            ulist.removeChild(ulist.firstChild);
-        }
-        querySnapshot.forEach(function (doc) {
-            console.log(doc.id, " => ", doc.data());
-            // 生成DOM
-            var li = document.createElement('li');
-            var text = document.createTextNode("[" + doc.id + "]" + doc.data().title + " => " + doc.data().content);
-            li.appendChild(text);
-            ulist.appendChild(li);
-        });
-    });
-function addData() {
-    // Add a new document in collection "cities"
-    db.collection("todos").add({
-        title: "学习Firebase",
-        content: "买书看小马视频(" + (dataIndex++).toString() + ")",
-        finished: false,
-    })
-        .then(function () {
-            console.log("Document successfully written!");
-        })
-        .catch(function (error) {
-            console.error("Error writing document: ", error);
-        });
-}
-function loadData() {
-    ulist = document.getElementById('ulist')
-    while (ulist.firstChild) {
-        ulist.removeChild(ulist.firstChild);
-    }
-    db.collection("todos").orderBy("content", "asc").get()
-        .then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-                console.log(doc.id, " => ", doc.data());
-                // 生成DOM
-                var li = document.createElement('li');
-                var text = document.createTextNode("[" + doc.id + "]" + doc.data().title + " => " + doc.data().content);
-                li.appendChild(text);
-                ulist.appendChild(li);
-            });
-        })
-        .catch(function (error) {
-            console.log("Error getting documents: ", error);
-        });
-}
-function clearData() {
-    ulist = document.getElementById('ulist')
-    while (ulist.firstChild) {
-        ulist.removeChild(ulist.firstChild);
-    }
-}
+
+// var dataIndex = 1;
+
+// let db = firebase.firestore();
+// db.collection("todos").orderBy("content", "asc")
+//     .onSnapshot(function (querySnapshot) {
+//         ulist = document.getElementById('ulist')
+//         while (ulist.firstChild) {
+//             ulist.removeChild(ulist.firstChild);
+//         }
+//         querySnapshot.forEach(function (doc) {
+//             console.log(doc.id, " => ", doc.data());
+//             // 生成DOM
+//             var li = document.createElement('li');
+//             var text = document.createTextNode("[" + doc.id + "]" + doc.data().title + " => " + doc.data().content);
+//             li.appendChild(text);
+//             ulist.appendChild(li);
+//         });
+//     });
+
+
+// function loadData() {
+//     let db = firebase.firestore();
+//     ulist = document.getElementById('ulist')
+//     while (ulist.firstChild) {
+//         ulist.removeChild(ulist.firstChild);
+//     }
+//     db.collection("todos").orderBy("content", "asc").get()
+//         .then(function (querySnapshot) {
+//             querySnapshot.forEach(function (doc) {
+//                 console.log(doc.id, " => ", doc.data());
+//                 // 生成DOM
+//                 var li = document.createElement('li');
+//                 var text = document.createTextNode("[" + doc.id + "]" + doc.data().title + " => " + doc.data().content);
+//                 li.appendChild(text);
+//                 ulist.appendChild(li);
+//             });
+//         })
+//         .catch(function (error) {
+//             console.log("Error getting documents: ", error);
+//         });
+// }
+// function clearData() {
+//     ulist = document.getElementById('ulist')
+//     while (ulist.firstChild) {
+//         ulist.removeChild(ulist.firstChild);
+//     }
+// }
+
+
+// const db = firebase.firestore();
+// db.collection('post').get().then(snapshot => {
+//     snapshot.docs.forEach(doc => {
+//         console.log(doc);
+//     });
+// });
+
+
