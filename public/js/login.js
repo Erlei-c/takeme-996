@@ -5,29 +5,18 @@ function start() {
             var email = user.email;
             // var uid = user.uid;
             var photoUrl = user.photoURL;
-            // var imgs = document.getElementById('userPhotos');
             var storageRef = firebase.storage().ref();
 
             document.getElementById('userDisPalyName').textContent = name;
             document.getElementById('userEmail').textContent = email;
-            // document.getElementById('userUId').textContent = uid;
             console.log(photoUrl);
-            // console.log(imgs.src);
-            
+
             storageRef.child('userPhoto/' + user.uid + '/' + '0').getDownloadURL().then(function (url) {
                     console.log(url);
                     document.getElementById('userPhotos').innerHTML = '<img src="' + url + '" alt="" id="userPhotos">';
-                    // document.getElementById('userPhotos').src =  url;
                 });
+            // document.getElementById('uppp').textContent = photoUrl; 测试用
             
-            // imgs.src = '"'  ;
-            
-            // document.getElementById('userPhotos').src = photoUrl;
-            
-            // document.getElementById('userPhoto').innerHTML = '<img src="'+ photoUrl +'" alt=""></img>';
-            document.getElementById('uppp').textContent = photoUrl;
-            // document.getElementById('userPhotos').src = gai();
-            // document.getElementById('userPhoto').innerHTML = '<img src="' + userPhoto + '" alt="">';
         }
     });
 
