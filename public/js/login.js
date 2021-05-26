@@ -163,9 +163,9 @@ function start() {
             'contentType': file.type
         };
         var user = firebase.auth().currentUser;
-        var dataIndex = 1;
+
         // Push to child path.
-        storageRef.child('postImgs/' + user.uid + (dataIndex++).toString()).put(file, metadata).then(function (snapshot) {
+        storageRef.child('postImgs/' + user.uid + file.name).put(file, metadata).then(function (snapshot) {
             // Let's get a download URL for the file.
             snapshot.ref.getDownloadURL().then(function (url) {
                 document.getElementById('linkspan').innerHTML = '<a href="' + url + '">Click For File</a>';
@@ -179,6 +179,7 @@ function start() {
     function addData(url) {
         var db = firebase.firestore();
         var user = firebase.auth().currentUser;
+        
         // var postTitle = document.getElementById('postTitle').value;
         // var postContent = document.getElementById('postContent').value;
         const form = document.querySelector('#addPost');
@@ -199,6 +200,52 @@ function start() {
             });
     }
 
+    function realTimeDB(){
+        var db = firebase.firestore();
+        db.collection('posst').onSnapshot(snapshot => {
+            let changes = snapshot.docChanges();
+            changes.forEach(change => {
+                console.log(change.doc.data());
+                if(change.type == 'added'){
+                    createPostView(change.doc);
+                }
+            });
+        });
+    }
+    function createPostView(doc){
+        var postview = document.getElementsByClassName('createPostWrap');
+        
+        var infodiv= document.createElement('div');
+        infodiv.setAttribute('dataId',doc.id);
+        var contentdiv= document.createElement('div');
+
+        var title = document.createElement('h3');
+        var content = document.createElement('p');
+        var postTime = document.createElement('span');
+        var author = document.createElement('span');
+        var authorPhoto = document.createElement('img');
+        var imgUrl = document.createElement('img');
+
+        title.textContent=doc.data().title;
+        content.textContent=doc.data().content;
+        postTime.textContent=doc.data().time;
+        author.textContent=doc.data().author;
+        imgUrl.src=doc.data().imgUrl;
+        authorPhoto.src=doc.data().authorPhoto.trim('"');
+
+        infodiv.appendChild(authorPhoto);
+        infodiv.appendChild(author);
+        infodiv.appendChild(postTime);
+
+        contentdiv.appendChild(title);
+        contentdiv.appendChild(content);
+        contentdiv.appendChild(imgUrl);
+
+        postview.appendChild(infodiv);
+        postview.appendChild(contentdiv);
+
+    }
+    
     function openDialog() {
         document.getElementById('light').style.display = 'block';
         document.getElementById('fade').style.display = 'block';

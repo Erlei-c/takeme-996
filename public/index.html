@@ -38,6 +38,7 @@
   <link rel="stylesheet" href="./css/login.css">
   <link rel="stylesheet" href="./css/userbar.css">
   <link rel="stylesheet" href="./css/loopimg.css">
+  <link rel="stylesheet" href="./css/postView.css">
 
 </head>
 
@@ -101,39 +102,24 @@
     <div id="fade" class="black_overlay"></div>
   </div>
 
-  <div class="createPostWrap">
-    <div>
-      <input type="text" id="postmessage" placeholder="post a message">
-    </div>
-
-    <div id="editor"></div>
-
-    <button id="btn1">获取html</button>
-    <button id="btn2">获取text</button>
-    
-  </div>
-
   <div class="postView">
-  <form id="addPost">
-    <input type="text" id="postTitle" name="postTitle" placeholder="title">
-    <input type="text" id="postContent" name="postContent" placeholder="content">
-    <button id="postSend">发送</button>
-  </form>
-    <button id="postGet">获取</button>
-    <input type="file" id="postFile" name="file" />
-    <h6>File URL:</h6>
-      <span id="linkspan"></span>
-    <div id="viewpostDiv"></div>
-    <div class="container">
-      <h1>Helo Firebase!</h1>
-      <!-- <Button class="btn btn-primary" onclick="addData()">增加数据</Button> -->
-      <button class="btn btn-danger" onclick="clearData()">清除画面</button>
-      <button class="btn btn-success" onclick="loadData()">手动加载数据</button>
-      <hr>
-      <ul id="ulist">
-      </ul>
+    <form id="addPost">
+      <input type="text" id="postTitle" name="postTitle" placeholder="title">
+      <input type="text" id="postContent" name="postContent" placeholder="content">
+      <button id="postSend">发送</button>
+    </form>
+      <input type="file" id="postFile" name="file" />
+      <h6>File URL:</h6>
+        <span id="linkspan"></span>
+      <div id="viewpostDiv"></div>
+    </div>
+  
+  <div class="createPostWrap">
+    <ul id="post-list">
+
+    </ul>
   </div>
-  </div>
+
 
   <div id="loopImg">
     <ul class="loopImgWrap">
@@ -163,5 +149,7 @@
 
 <script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="-2" count="200" src="./js/canvas-nest.js"></script>
 </body>
+  <script>
 
+  </script>
 </html>

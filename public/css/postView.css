@@ -1,0 +1,7 @@
+.createPostWrap ul li img:first-child{
+    width: 50px;
+    height: 50px;
+}
+.createPostWrap ul li img:last-child {
+    height: 400px;
+}
