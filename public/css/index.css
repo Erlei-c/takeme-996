@@ -36,3 +36,22 @@ body{
     bottom: 0;
     margin-right: 10px;
 }
+/* button {
+	background-color: #83cee6;
+	border: none;
+	color: white;
+	padding: 10px 27px;
+	text-align: center;
+	font-size: 3px;
+	cursor: pointer;
+
+    transition-duration: 0.4s;
+	border-radius: 8px;
+}
+/* button:hover {
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24), 0 12px 45px 0 rgba(0,0,0,0.19)
+} */
+/* button:hover {
+    background-color: #c6cac6; 
+    
+} */
