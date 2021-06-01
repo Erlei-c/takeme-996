@@ -62,18 +62,18 @@
 
         <div class="userName">
           <span>userName:</span>
-          <span id="userDisPalyName">请登录</span>
+          <span id="userDisPalyName">NULL</span>
           <hr>
           <span>email:</span>
-          <span id="userEmail">请登录</span>
+          <span id="userEmail">NULL</span>
         </div>
 
       </div>
 
       <div class="dropDown" id="lightDropDown">
-        <a class="closeChange" href="javascript:;" onclick="closeChange()">关闭</a>
-        <input type="text" id="changeName" placeholder="请输入要修改的用户名">
-        <button id="changeNameBtn">修改</button>
+        <a class="closeChange" href="javascript:;" onclick="closeChange()">X</a>
+        <input type="text" id="changeName" placeholder="enter your displayname">
+        <button id="changeNameBtn">change</button>
         <br><br>
         <h6>Choose File</h6>
         <input type="file" id="file" name="file" />
@@ -83,22 +83,25 @@
       <div id="fadeDropDown" class="black_overlay"></div>
     </div>
     <div class="btnDiv">
-      <button class="openChange" onclick="openChange()">↓</button>
-      <button class="signout" onclick="signOut()">退出</button>
+
+
+      <button class="openChange" onclick="openChange()">change Info</button>
+      <button class="signout" onclick="signOut()">signOut</button>
+
     </div>
     <button onclick="openDialog()" class="signBtn">SignIn/SignUp</button>
     <div id="light" class="white_content">
       <div class="formBX ">
-        <a class="closeDialog" href="javascript:;" onclick="closeDialog()">关闭</a>
+        <a class="closeDialog" href="javascript:;" onclick="closeDialog()">X</a>
         <p class="titleP2">SignIn/signUp</p>
         <input type="text" id="email" placeholder="email">
         <input type="password" id="password" placeholder="password">
         <br><br>
-        <button id="inBtn">登录</button>&nbsp;
-        <button id="upBtn">注册</button>&nbsp;
-        <button id="outBtn">退出</button>&nbsp;
-        <p class="titleP3">忘记密码？</p>
-        <button id="resetBtn">改密</button>&nbsp;
+        <button id="inBtn">SignIn</button>&nbsp;
+        <button id="upBtn">signUp</button>&nbsp;
+        <button id="outBtn">signOut</button>&nbsp;
+        <p class="titleP3">Forgot password?</p>
+        <button id="resetBtn">Change password</button>&nbsp;
       </div>
 
     </div>
@@ -111,10 +114,11 @@
       <br>
       <!-- <input type="text" id="postContent" name="postContent" placeholder="content"> -->
       <textarea id="postContent" name="postContent" rows="6" cols="80"></textarea>
-      <button id="postSend" class="buttonBox">发送</button>
+
+      <button id="postSend" class="buttonBox">Send</button>
     </form>
       <input type="file" id="postFile" name="file" />
-      <h6>File URL:</h6>
+      <h6 id="postFileH6">File URL:</h6>
         <span id="linkspan"></span>
       <div id="viewpostDiv"></div>
     </div>

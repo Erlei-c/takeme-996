@@ -1,6 +1,29 @@
 .createPostWrap ul li img:first-child{
     width: 50px;
     height: 50px;
+    margin-right: 10px;
+}
+/*加在这里 */
+.createPostWrap ul li{
+    width: 900px;
+    margin-bottom: 30px;
+    background-color: beige;
+}
+.createPostWrap ul li span{
+    margin-left: 20px;
+}
+.createPostWrap ul li h3{
+    margin-left: 5px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.createPostWrap ul li p{
+    margin-left: 10px;
+    font-size: 15px;
+    word-wrap: break-word;
+	word-break: break-all;
+    margin-bottom: 10px;
 }
 .createPostWrap ul li img:last-child {
     height: 400px;
@@ -14,6 +37,9 @@
     
     /* text-align:left; */
     
+}
+#postFile, #postFileH6{
+    margin-left: 10px;
 }
 /* #postContent{
     outline-style: none;
@@ -36,5 +62,4 @@ textarea:focus {
     margin-top:100px;
     /* display: flex;
     bottom: 0px; */
-
 }
