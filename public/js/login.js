@@ -42,21 +42,21 @@ function start() {
         var password = document.getElementById('password').value;
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(function () {
-                alert("登录成功");
+                alert("signIn successful");
                 location.reload();
             }).catch(function (error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 if (errorCode === 'auth/wrong-password') {
-                    alert("密码错误");
+                    alert("wrong password");
                 } if (errorCode === 'auth/user-not-found') {
-                    alert("未找到此账号");
+                    alert("user not found");
                 }
                 if (errorCode === 'auth/user-disabled') {
-                    alert("账号被禁用");
+                    alert("user disabled");
                 }
                 if (errorCode === 'auth/invalid-email') {
-                    alert("邮箱无效");
+                    alert("invalid email");
                 } else {
                     alert(errorMessage);
                 }
@@ -68,17 +68,17 @@ function start() {
         var password = document.getElementById('password').value;
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(function () {
-                alert("注册成功");
+                alert("Registered successfully");
                 location.reload();
             }).catch(function (error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 if (errorCode == 'auth/weak-password') {
-                    alert('密码过于简单');
+                    alert('weak password');
                 } if (errorCode == 'auth/email-already-in-use') {
-                    alert('当前账号已存在');
+                    alert('email already in use');
                 } if (errorCode == 'auth/invalid-email') {
-                    alert('邮件无效');
+                    alert('invalid email');
                 } else {
                     alert(errorMessage);
                 }
@@ -89,7 +89,7 @@ function start() {
         var email = document.getElementById('email').value;
         firebase.auth().sendPasswordResetEmail(email)
             .then(function () {
-                alert("邮件已发送")
+                alert("Please check the email.")
             }).catch(function (error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
@@ -111,7 +111,7 @@ function start() {
     // 登出
     function signOut() {
         firebase.auth().signOut().then(function () {
-            alert("退出");
+            alert("signOut");
             location.reload();
         });
     }
@@ -122,7 +122,7 @@ function start() {
         user.updateProfile({
             displayName: document.getElementById('changeName').value
         }).then(function () {
-            alert("更新成功");
+            alert("update is successful");
             location.reload();
         });
     }
