@@ -1,6 +1,15 @@
 body{
     height: 90000px;
+	background-color: rgb(238, 234, 234);
 }
+.logoWrap{
+	/* background-color: aqua; */
+	width: 900px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	margin-top: 8px;
+}
+
 /* 设置浏览区 */
 .createPostWrap{
     width: 900px;
