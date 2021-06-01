@@ -7,13 +7,24 @@
 }
 #postTitle{
     outline-style: none;
-    padding: 11px 10px;
+    width: 245px;
+    height: 27px;
     margin: 10px ;
+    /* padding: 11px 130px; */
+    
+    /* text-align:left; */
+    
 }
-#postContent{
+/* #postContent{
     outline-style: none;
-    padding: 9px 80px;
+    width: 490px;
+    height: 80px;
     margin: 10px;
+   
+} */
+textarea {
+    resize: none;
+    margin-left: 10px;
 }
 #postSend{
     float: right;
