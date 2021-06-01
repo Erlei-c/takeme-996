@@ -32,7 +32,6 @@ function start() {
     document.getElementById('outBtn').addEventListener('click', signOut);
     document.getElementById('resetBtn').addEventListener('click', ResetEmail);
     document.getElementById('changeNameBtn').addEventListener('click', changeName);
-    // document.getElementById('postSend').addEventListener('click', uploading);
     document.getElementById('file').addEventListener('change', handleFileSelect);
     document.getElementById('postFile').addEventListener('change', uploading);
     document.querySelector('#addPost').addEventListener('submit', addData);
@@ -136,17 +135,12 @@ function start() {
             'contentType': file.type
         };
         var user = firebase.auth().currentUser;
-        // var id = user.uid;
-
-        // Push to child path.
-        storageRef.child('userPhoto/' + user.uid + '/' + '0').put(file, metadata).then(function (snapshot) {
-            // Let's get a download URL for the file.
+        storageRef.child('userPhoto/' + user.uid + '/' + '0')
+        .put(file, metadata).then(function (snapshot) {
             snapshot.ref.getDownloadURL().then(function (url) {
-                document.getElementById('linkbox').innerHTML = '<a href="' + url + '">Click For File</a>';
-                // document.getElementById('userPhoto').innerHTML = '<img src="' + userPhoto + '" alt="">';
-                // document.getElementById('userPhotos').src =  url;
+                document.getElementById('linkbox').innerHTML = 
+                '<a href="' + url + '">Click For File</a>';
                 user.updateProfile({
-
                     photoURL: '"' + url + '"'
                 });
             });
@@ -163,12 +157,11 @@ function start() {
             'contentType': file.type
         };
         var user = firebase.auth().currentUser;
-
-        // Push to child path.
-        storageRef.child('postImgs/' + user.uid + file.name).put(file, metadata).then(function (snapshot) {
-            // Let's get a download URL for the file.
+        storageRef.child('postImgs/' + user.uid + file.name)
+        .put(file, metadata).then(function (snapshot) {
             snapshot.ref.getDownloadURL().then(function (url) {
-                document.getElementById('linkspan').innerHTML = '<a href="' + url + '">Click For File</a>';
+                document.getElementById('linkspan').innerHTML = 
+                '<a href="' + url + '">Click For File</a>';
                 addData(url);
             });
         }).catch(function (error) {
@@ -179,11 +172,7 @@ function start() {
     function addData(url) {
         var db = firebase.firestore();
         var user = firebase.auth().currentUser;
-        
-        // var postTitle = document.getElementById('postTitle').value;
-        // var postContent = document.getElementById('postContent').value;
         const form = document.querySelector('#addPost');
-        // Add a new document in collection "cities"
         db.collection("post").add({
             title: form.postTitle.value,
             content: form.postContent.value,
@@ -200,52 +189,7 @@ function start() {
             });
     }
 
-    // function realTimeDB(){
-    //     var db = firebase.firestore();
-    //     db.collection('posst').onSnapshot(snapshot => {
-    //         let changes = snapshot.docChanges();
-    //         changes.forEach(change => {
-    //             console.log(change.doc.data());
-    //             if(change.type == 'added'){
-    //                 createPostView(change.doc);
-    //             }
-    //         });
-    //     });
-    // }
-    // function createPostView(doc){
-    //     var postview = document.getElementsByClassName('createPostWrap');
-        
-    //     var infodiv= document.createElement('div');
-    //     infodiv.setAttribute('dataId',doc.id);
-    //     var contentdiv= document.createElement('div');
 
-    //     var title = document.createElement('h3');
-    //     var content = document.createElement('p');
-    //     var postTime = document.createElement('span');
-    //     var author = document.createElement('span');
-    //     var authorPhoto = document.createElement('img');
-    //     var imgUrl = document.createElement('img');
-
-    //     title.textContent=doc.data().title;
-    //     content.textContent=doc.data().content;
-    //     postTime.textContent=doc.data().time;
-    //     author.textContent=doc.data().author;
-    //     imgUrl.src=doc.data().imgUrl;
-    //     authorPhoto.src=doc.data().authorPhoto.trim('"');
-
-    //     infodiv.appendChild(authorPhoto);
-    //     infodiv.appendChild(author);
-    //     infodiv.appendChild(postTime);
-
-    //     contentdiv.appendChild(title);
-    //     contentdiv.appendChild(content);
-    //     contentdiv.appendChild(imgUrl);
-
-    //     postview.appendChild(infodiv);
-    //     postview.appendChild(contentdiv);
-
-    // }
-    
     function openDialog() {
         document.getElementById('light').style.display = 'block';
         document.getElementById('fade').style.display = 'block';
