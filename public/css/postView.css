@@ -26,6 +26,11 @@ textarea {
     resize: none;
     margin-left: 10px;
 }
+textarea:focus {
+
+    outline: none;
+
+}
 #postSend{
     float: right;
     margin-top:100px;
