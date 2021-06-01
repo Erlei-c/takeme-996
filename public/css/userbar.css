@@ -1,10 +1,11 @@
 /* 设置顶部用户功能区 */
 .userBarWrap{
-    background-color: aquamarine;
+    background-color: rgb(233, 240, 240);
     width: 900px;
     height: 80px;
     margin: 0 auto;
     margin-bottom: 20px;
+    box-shadow: 6px 6px rgb(216, 235, 235);
 }
 .userInfo{
     width: 400px;

@@ -5,3 +5,19 @@
 .createPostWrap ul li img:last-child {
     height: 400px;
 }
+#postTitle{
+    outline-style: none;
+    padding: 11px 10px;
+    margin: 10px ;
+}
+#postContent{
+    outline-style: none;
+    padding: 9px 80px;
+    margin: 10px;
+}
+#postSend{
+    float: right;
+    margin-top:100px;
+    /* display: flex;
+    bottom: 0px; */
+}

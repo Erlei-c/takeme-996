@@ -22,7 +22,8 @@ body{
     height: 200px;
     margin: 0 auto;
     margin-bottom: 30px;
-    background-color: aqua;
+    background-color: rgb(233, 240, 240);
+    box-shadow: 6px 6px rgb(216, 235, 235);
 }
 
 /* 设置地图区 */
@@ -35,3 +36,55 @@ body{
     bottom: 0;
     margin-right: 10px;
 }
+button{
+    background: linear-gradient(135deg, #9babdf, #d5c6e9);
+    font-size: 10px;
+}
+/* button{
+    width: 5px;
+    height: 5px;
+    position: relative;
+	display: inline-block;
+	padding: 1.2em 1em;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	color: white;}
+
+button:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: linear-gradient(135deg, #6e8efb, #a777e3);
+	border-radius: 4px;
+	transition: box-shadow 0.5s ease, transform 0.2s ease;
+	will-change: transform;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	transform: translateY(var(--ty, 0)) rotateX(var(--rx, 0))
+			rotateY(var(--ry, 0)) translateZ(var(--tz, -12px));
+	}
+
+    button:hover::before {
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+	}
+
+	button::after {
+		    position: relative;
+		    display: inline-block;
+		    content: attr(data-title);
+		    transition: transform 0.2s ease;
+		    font-weight: bold;
+		    letter-spacing: 0.01em;
+		    will-change: transform;
+		    transform: translateY(var(--ty, 0)) rotateX(var(--rx, 0))
+		    	rotateY(var(--ry, 0));
+	    }
+     */
+
+    
+
+    
