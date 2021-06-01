@@ -200,51 +200,51 @@ function start() {
             });
     }
 
-    function realTimeDB(){
-        var db = firebase.firestore();
-        db.collection('posst').onSnapshot(snapshot => {
-            let changes = snapshot.docChanges();
-            changes.forEach(change => {
-                console.log(change.doc.data());
-                if(change.type == 'added'){
-                    createPostView(change.doc);
-                }
-            });
-        });
-    }
-    function createPostView(doc){
-        var postview = document.getElementsByClassName('createPostWrap');
+    // function realTimeDB(){
+    //     var db = firebase.firestore();
+    //     db.collection('posst').onSnapshot(snapshot => {
+    //         let changes = snapshot.docChanges();
+    //         changes.forEach(change => {
+    //             console.log(change.doc.data());
+    //             if(change.type == 'added'){
+    //                 createPostView(change.doc);
+    //             }
+    //         });
+    //     });
+    // }
+    // function createPostView(doc){
+    //     var postview = document.getElementsByClassName('createPostWrap');
         
-        var infodiv= document.createElement('div');
-        infodiv.setAttribute('dataId',doc.id);
-        var contentdiv= document.createElement('div');
+    //     var infodiv= document.createElement('div');
+    //     infodiv.setAttribute('dataId',doc.id);
+    //     var contentdiv= document.createElement('div');
 
-        var title = document.createElement('h3');
-        var content = document.createElement('p');
-        var postTime = document.createElement('span');
-        var author = document.createElement('span');
-        var authorPhoto = document.createElement('img');
-        var imgUrl = document.createElement('img');
+    //     var title = document.createElement('h3');
+    //     var content = document.createElement('p');
+    //     var postTime = document.createElement('span');
+    //     var author = document.createElement('span');
+    //     var authorPhoto = document.createElement('img');
+    //     var imgUrl = document.createElement('img');
 
-        title.textContent=doc.data().title;
-        content.textContent=doc.data().content;
-        postTime.textContent=doc.data().time;
-        author.textContent=doc.data().author;
-        imgUrl.src=doc.data().imgUrl;
-        authorPhoto.src=doc.data().authorPhoto.trim('"');
+    //     title.textContent=doc.data().title;
+    //     content.textContent=doc.data().content;
+    //     postTime.textContent=doc.data().time;
+    //     author.textContent=doc.data().author;
+    //     imgUrl.src=doc.data().imgUrl;
+    //     authorPhoto.src=doc.data().authorPhoto.trim('"');
 
-        infodiv.appendChild(authorPhoto);
-        infodiv.appendChild(author);
-        infodiv.appendChild(postTime);
+    //     infodiv.appendChild(authorPhoto);
+    //     infodiv.appendChild(author);
+    //     infodiv.appendChild(postTime);
 
-        contentdiv.appendChild(title);
-        contentdiv.appendChild(content);
-        contentdiv.appendChild(imgUrl);
+    //     contentdiv.appendChild(title);
+    //     contentdiv.appendChild(content);
+    //     contentdiv.appendChild(imgUrl);
 
-        postview.appendChild(infodiv);
-        postview.appendChild(contentdiv);
+    //     postview.appendChild(infodiv);
+    //     postview.appendChild(contentdiv);
 
-    }
+    // }
     
     function openDialog() {
         document.getElementById('light').style.display = 'block';

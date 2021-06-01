@@ -15,6 +15,9 @@
     /* text-align:left; */
     
 }
+#postFile, #postFileH6{
+    margin-left: 10px;
+}
 /* #postContent{
     outline-style: none;
     width: 490px;
@@ -31,5 +34,4 @@ textarea {
     margin-top:100px;
     /* display: flex;
     bottom: 0px; */
-
 }

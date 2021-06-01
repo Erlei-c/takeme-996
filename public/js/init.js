@@ -6,8 +6,9 @@ window.onload = function () {
     }
     init();
     var db = firebase.firestore();
-
-    db.collection("post").get().then((querySnapshot) => {
+    
+    
+    db.collection("post").orderBy("time", "desc").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             var list = document.querySelector('#post-list');
             let li = document.createElement('li');
