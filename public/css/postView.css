@@ -7,7 +7,8 @@
 .createPostWrap ul li{
     width: 900px;
     margin-bottom: 30px;
-    background-color: beige;
+    background-color: rgb(233, 240, 240);
+    box-shadow: 6px 6px rgb(216, 235, 235);
 }
 .createPostWrap ul li span{
     margin-left: 20px;
